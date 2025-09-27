@@ -4,14 +4,14 @@ set -euo pipefail
 # Host-side helper for docker-compose projects.
 # Usage: bash ./scripts/post-compose-setup.sh
 # Optional env overrides:
-#  COMPOSE_CMD default: docker-compose
+#  COMPOSE_CMD default: docker compose
 #  BACKEND_SERVICE default: backend
 #  FRONTEND_SERVICE default: frontend
 #  DB_SERVICE default: db
 #  BACKEND_WORKDIR path inside backend container for project; default /workspace/backend
 #  FRONTEND_WORKDIR path inside frontend container for project; default /workspace/frontend
 
-COMPOSE_CMD="${COMPOSE_CMD:-docker-compose}"
+COMPOSE_CMD="${COMPOSE_CMD:-docker compose}"
 BACKEND_SERVICE="${BACKEND_SERVICE:-backend}"
 FRONTEND_SERVICE="${FRONTEND_SERVICE:-frontend}"
 DB_SERVICE="${DB_SERVICE:-db}"

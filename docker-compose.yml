@@ -21,7 +21,8 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
     volumes:
-      - ./frontend:/workspace/frontend
+      - ./frontend:/workspace/frontend:delegated
+      - frontend_node_modules:/workspace/frontend/node_modules
     ports:
       - "5173:5173"
     depends_on:
@@ -47,3 +48,4 @@ services:
 
 volumes:
   pgdata:
+  frontend_node_modules:

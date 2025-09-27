@@ -1,12 +1,15 @@
 FROM python:3.11-slim
-
 WORKDIR /workspace/backend
 
-RUN apt-get update && apt-get install -y build-essential git
+# 必要な build ツールを入れてキャッシュを消す
+RUN apt-get update && apt-get install -y --no-install-recommends \
+      build-essential git libpq-dev \
+    && rm -rf /var/lib/apt/lists/*
 
-COPY backend/requirements.txt /workspace/backend/
-RUN pip install --no-cache-dir -r requirements.txt
+COPY requirements.txt ./
+RUN python -m pip install --upgrade pip && pip install --no-cache-dir -r requirements.txt
 
-COPY backend /workspace/backend
+COPY . .
 
+# 開発用は --reload のままで良い
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]

@@ -1,10 +1,10 @@
-FROM node:18
-
+FROM node:20.18
 WORKDIR /workspace/frontend
 
-COPY frontend/package*.json ./
-RUN npm install
+# 依存だけ先にコピーしてキャッシュ効率を上げる
+COPY package*.json ./
+RUN npm ci --silent --no-audit --progress=false
 
-COPY frontend /workspace/frontend
+COPY . .
 
 CMD ["npm", "run", "dev", "--", "--host"]

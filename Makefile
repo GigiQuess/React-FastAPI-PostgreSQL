@@ -3,7 +3,7 @@
 
 .PHONY: up build up-detached down restart rebuild logs ps exec install-backend install-frontend migrate seed test fmt shell
 
-COMPOSE := docker-compose
+COMPOSE := docker compose
 PROJECT_DIR := .
 
 # Start (foreground)
